@@ -5,8 +5,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class InfoController {
-    @GetMapping("/sample")
-    public String sample(){
-        return "This is a sample page";
+
+    @GetMapping("/info")
+    public String info(){
+        return "Products API - a Spring Boot REST application.";
     }
 }
