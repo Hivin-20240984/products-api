@@ -1,0 +1,39 @@
+@startuml
+
+abstract class Product {
+  - id : Long
+  - name : String
+  - price : Double
+  + {abstract} getSummary() : String
+  + getName() : String
+  + getPrice() : Double
+}
+
+interface Discountable {
+  + applyDiscount(rate : double) : void
+  + getDiscountedPrice() : double
+}
+
+class DigitalProduct {
+  - downloadUrl : String
+  - fileSizeMB : double
+  + getSummary() : String
+  + applyDiscount(rate : double) : void
+}
+
+class PhysicalProduct {
+  - weightKg : double
+  - dimensions : String
+  + getSummary() : String
+  + applyDiscount(rate : double) : void
+}
+
+' solid line = extends (hollow triangle at the PARENT end)
+Product <|-- DigitalProduct
+Product <|-- PhysicalProduct
+
+' dashed line = implements
+Discountable <|.. DigitalProduct
+Discountable <|.. PhysicalProduct
+
+@enduml

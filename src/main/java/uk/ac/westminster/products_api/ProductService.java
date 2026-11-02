@@ -11,6 +11,7 @@ public class ProductService {
 
     private List<Product> products = new ArrayList<>();
     private Long nextId = 1L;
+
     public ProductService() {
         products.add(new DigitalProduct(
                 nextId++, "Clean Code (E-book)", 29.99,
@@ -45,5 +46,14 @@ public class ProductService {
         return products.stream()
                 .filter(p -> p.getName().contains(name))
                 .toList();
+    }
+
+    // One line in the loop body, and no mention of any subclass.
+    public List<String> getAllSummaries() {
+        List<String> summaries = new ArrayList<>();
+        for (Product p : products) {
+            summaries.add(p.getSummary());
+        }
+        return summaries;
     }
 }

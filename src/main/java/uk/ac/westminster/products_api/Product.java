@@ -1,13 +1,12 @@
 package uk.ac.westminster.products_api;
 
-public class Product {
+public abstract class Product {
 
     private Long id;
     private String name;
     private Double price;
 
     public Product() {
-
     }
 
     public Product(Long id, String name, Double price) {
@@ -15,6 +14,9 @@ public class Product {
         this.name = name;
         this.price = price;
     }
+
+    // No body: Product can't answer this, so every concrete subclass MUST.
+    public abstract String getSummary();
 
     public Long getId() {
         return id;
@@ -39,5 +41,4 @@ public class Product {
     public void setPrice(Double price) {
         this.price = price;
     }
-
 }

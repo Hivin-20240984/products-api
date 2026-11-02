@@ -28,13 +28,20 @@ public class ProductController {
         return productService.findByName(name);
     }
 
+    @GetMapping("/products/summaries")
+    public List<String> getSummaries() {
+        return productService.getAllSummaries();
+    }
+
     @GetMapping("/products/{id}")
     public Product getProductById(@PathVariable Long id) {
         return productService.getProductById(id).orElse(null);
     }
 
+    // Temporary: Product is abstract, so Jackson can't build one from JSON.
+    // Lectures 6-7 show the proper fix, so for now we accept a concrete subclass.
     @PostMapping("/products")
-    public Product addProduct(@RequestBody Product product) {
+    public Product addProduct(@RequestBody DigitalProduct product) {
         return productService.addProduct(product);
     }
 
